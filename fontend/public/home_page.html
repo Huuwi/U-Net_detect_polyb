@@ -4,37 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Polyp Detection with U-net</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            height: 700px;
+            width: 1000px;
+            border: 2px solid #000;
+            background-image: url('./image.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: palegreen;
+            position: relative;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        h2 {
+            background-color: rgba(208, 101, 154, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .image-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .image-box {
+            height: 400px;
+            width: 400px;
+            border: 2px solid #000;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+        }
+
+        .image-box+.image-box {
+            margin-left: 20px;
+        }
+
+        .form-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgba(208, 101, 154, 0.8);
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
-    <div
-        style="height: 700px; width: 1500px; border: solid black; background-image: url(./image.png)  ; background-repeat: no-repeat;  background-size: cover;  z-index: -5; background-color: palegreen;">
-        <h2 style="position: relative; left: 530px;background-color: rgba(208, 101, 154, 0.8); width : 380px ;">Mô hình
-            U-net dự đoán
-            polyp dạ dày</h2>
-        <div style="position: relative; left: 400px;">
-            <h3 style="color: green;background-color: rgba(255, 255, 255, 0.8); width: 140px;">ảnh được tải lên</h3>
-            <h3
-                style="position: relative; left: 450px; bottom: 40px; color: red;background-color: rgba(255, 255, 255, 0.8) ; width: 220px;">
-                ảnh dự đoán vùng bị polyp</h3>
+    <div class="container">
+        <h2>Mô hình U-net dự đoán polyp dạ dày</h2>
+        <div class="image-section">
+            <div id="image1" class="image-box"></div>
+            <div id="image2" class="image-box"></div>
         </div>
-        <div style="height: 500px; width: 900px;position: relative; top: -40px; left: 280px;">
-            <div id="image1"
-                style="height: 400px ; width: 400px ; border: solid black;background-color: rgba(255, 255, 255, 0.8)">
-            </div>
-            <div id="image2"
-                style="height: 400px ; width: 400px ; border: solid black; position: relative ; left: 500px; bottom: 400px;background-color: rgba(255, 255, 255, 0.8)">
-            </div>
+        <div class="form-section">
+            <form method="" action="">
+                <input type="file" id="choose_file" name="img" accept="image/*">
+            </form>
         </div>
-        <form method="" action="">
-            <input style="position: relative; bottom: 100px; left: 400px;background-color: rgba(255, 255, 255, 0.8)"
-                type="file" id="choose_file" name="img" accept="image/*">
-        </form>
-        <button id="display_btn"
-            style="position: relative; bottom: 120px; left: 950px;background-color: rgba(255, 255, 255, 0.8)" type="">dự
-            đoán</button>
-        <img id="image0" src="" alt="">
+        <div class="form-section">
+            <button id="display_btn" type="button">Dự đoán</button>
+        </div>
+        <img id="image0" src="" alt="" style="display:none;">
     </div>
 
     <script src="./script.js"></script>

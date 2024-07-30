@@ -1,8 +1,10 @@
-from flask import Flask, Response, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
-from PIL import Image, ImageDraw, ImageFont ,ImageEnhance
+from PIL import Image, ImageDraw, ImageFont 
 from io import BytesIO
 import os
+app = Flask(__name__)
+
 
 def add_text_to_image(image, text, position, font_path=None, font_size=30):
     draw = ImageDraw.Draw(image)
@@ -15,7 +17,6 @@ def add_text_to_image(image, text, position, font_path=None, font_size=30):
     draw.text(position, text, font=font, fill="white")
 
 i = 0
-app = Flask(__name__)
 
 UPLOAD_FOLDER = './uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -34,23 +35,32 @@ def handler_image():
         return jsonify({'error': 'File type not allowed'}), 400
     i += 1
     image = Image.open(BytesIO(file.read())) 
+        # Tạo đường dẫn lưu ảnh
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], f'{i}' + file.filename)
+
+
 
     '''
     
-    dùng model ở đây
+    dùng model ở đây dùng model với biến image
     
     
     '''
 
 
-    text = "Hello, this is a test!"
-    add_text_to_image(image, text, (150, 150), font_size=130)
+    # text = "Hello, this is a test!" # test chinh sua
+    # add_text_to_image(image, text, (150, 150), font_size=130)
     
-    # Tạo đường dẫn lưu ảnh
-    file_path = os.path.join(app.config['UPLOAD_FOLDER'], f'processed_{i}' + file.filename)
+
     
-    # Lưu ảnh đã chỉnh sửa
+    
+    
+    # Lưu ảnh đã chỉnh sửa vào folder uploads
     image.save(file_path)
+
+
+
+
 
 
 
