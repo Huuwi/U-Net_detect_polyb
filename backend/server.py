@@ -48,8 +48,8 @@ def handler_image():
     '''
 
 
-    # text = "Hello, this is a test!" # test chinh sua
-    # add_text_to_image(image, text, (150, 150), font_size=130)
+    text = "Hello, this is a test!" # test chinh sua
+    add_text_to_image(image, text, (150, 150), font_size=130)
     
 
     
