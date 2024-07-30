@@ -14,7 +14,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: rgb(127, 237, 127);
+            overflow: hidden;
+            background-color: rgb(168, 240, 240);
         }
 
         .container {
@@ -30,10 +31,11 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             overflow: hidden;
+            animation: fadeIn 2s ease-out;
         }
 
         h2 {
-            background-color: rgba(208, 101, 154, 0.8);
+            background-color: rgba(101, 217, 233, 0.8);
             color: #fff;
             text-align: center;
             padding: 15px;
@@ -41,6 +43,8 @@
             margin-bottom: 20px;
             font-size: 24px;
             font-weight: bold;
+            transform: translateY(-20px);
+            animation: slideIn 1s ease-out forwards;
         }
 
         .image-section {
@@ -55,10 +59,13 @@
             border: 2px solid #000;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .image-box+.image-box {
-            margin-left: 20px;
+        .image-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
         .form-section {
@@ -73,6 +80,12 @@
             padding: 10px;
             border-radius: 5px;
             font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            background-color: rgba(101, 217, 233, 0.8);
+            color: #fff;
         }
 
         button {
@@ -82,12 +95,35 @@
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         button:hover {
-            background-color: rgba(208, 101, 154, 0.8);
+            background-color: rgba(101, 217, 233, 0.8);
             color: #fff;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
